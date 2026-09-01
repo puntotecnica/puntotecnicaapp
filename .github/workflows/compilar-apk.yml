@@ -1,0 +1,45 @@
+name: Compilar APK Punto Técnica
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar proyecto
+        run: |
+          mkdir -p proyecto
+          unzip -o Listado_GitHub_PuntoTecnica.zip -d proyecto
+          echo "Contenido del proyecto:"
+          find proyecto -maxdepth 3 -type f | head -100
+
+      - name: Dar permisos a Gradle
+        run: |
+          GRADLEW=$(find proyecto -name gradlew -type f | head -1)
+          if [ -z "$GRADLEW" ]; then
+            echo "No se encontró gradlew dentro del proyecto."
+            exit 1
+          fi
+          chmod +x "$GRADLEW"
+          echo "Gradle encontrado en: $GRADLEW"
+
+      - name: Compilar APK
+        run: |
+          GRADLEW=$(find proyecto -name gradlew -type f | head -1)
+          cd "$(dirname "$GRADLEW")"
+          ./gradlew assembleDebug --stacktrace
+
+      - name: Buscar APK
+        run: |
+          find proyecto -type f -name "*.apk" -print
+
+      - name: Guardar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Punto-Tecnica-APK
+          path: proyecto/**/build/outputs/apk/**/*.apk
