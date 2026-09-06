@@ -21,7 +21,6 @@ class ClientesActivity : AppCompatActivity() {
         titulo.textSize = 26f
         titulo.setTextColor(Color.rgb(13, 110, 170))
         titulo.gravity = Gravity.CENTER
-        titulo.setPadding(0, 10, 0, 25)
 
         layout.addView(titulo)
 
@@ -31,7 +30,6 @@ class ClientesActivity : AppCompatActivity() {
 
         val telefono = EditText(this)
         telefono.hint = "Teléfono / WhatsApp"
-        telefono.inputType = 2
         layout.addView(telefono)
 
         val direccion = EditText(this)
@@ -46,37 +44,7 @@ class ClientesActivity : AppCompatActivity() {
         guardar.text = "GUARDAR CLIENTE"
         layout.addView(guardar)
 
-        val lista = TextView(this)
-        lista.text = "\nClientes registrados:"
-        lista.textSize = 18f
-        lista.setPadding(0, 25, 0, 10)
-
-        layout.addView(lista)
-
         guardar.setOnClickListener {
-
-            if (nombre.text.toString().trim().isEmpty()) {
-                Toast.makeText(
-                    this,
-                    "Ingresá el nombre del cliente",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
-            }
-
-            lista.append(
-                "\n\n" +
-                "Cliente: ${nombre.text}\n" +
-                "WhatsApp: ${telefono.text}\n" +
-                "Dirección: ${direccion.text}\n" +
-                "Localidad: ${localidad.text}"
-            )
-
-            nombre.text.clear()
-            telefono.text.clear()
-            direccion.text.clear()
-            localidad.text.clear()
-
             Toast.makeText(
                 this,
                 "Cliente guardado",
