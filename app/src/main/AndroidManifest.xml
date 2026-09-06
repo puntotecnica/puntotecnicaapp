@@ -9,6 +9,26 @@
         android:theme="@style/Theme.PuntoTecnica">
 
         <activity
+            android:name=".ResumenActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PresupuestosActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".StockActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".AgendaActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".TrabajosActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ClientesActivity"
             android:exported="false" />
 
