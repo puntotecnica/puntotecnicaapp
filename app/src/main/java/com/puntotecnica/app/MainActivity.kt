@@ -1,6 +1,7 @@
 package com.puntotecnica.app
 
 import android.os.Bundle
+import android.content.Intent
 import android.graphics.Color
 import android.view.Gravity
 import android.widget.*
@@ -33,7 +34,17 @@ class MainActivity : AppCompatActivity() {
 
         principal.addView(subtitulo)
 
-        agregarBoton(principal, "👤  CLIENTES")
+        val botonClientes = agregarBoton(principal, "👤  CLIENTES")
+
+        botonClientes.setOnClickListener {
+            startActivity(
+                Intent(
+                    this,
+                    ClientesActivity::class.java
+                )
+            )
+        }
+
         agregarBoton(principal, "🔧  TRABAJOS")
         agregarBoton(principal, "📅  AGENDA")
         agregarBoton(principal, "📦  DEPÓSITO Y STOCK")
@@ -41,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         agregarBoton(principal, "📊  RESUMEN")
 
         val espacio = Space(this)
+
         principal.addView(
             espacio,
             LinearLayout.LayoutParams(
@@ -65,7 +77,8 @@ class MainActivity : AppCompatActivity() {
     private fun agregarBoton(
         layout: LinearLayout,
         texto: String
-    ) {
+    ): Button {
+
         val boton = Button(this)
         boton.text = texto
         boton.textSize = 16f
@@ -79,5 +92,7 @@ class MainActivity : AppCompatActivity() {
                 setMargins(0, 6, 0, 6)
             }
         )
+
+        return boton
     }
 }
