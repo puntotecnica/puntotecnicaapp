@@ -24,13 +24,7 @@ class MainActivity : AppCompatActivity() {
         titulo.gravity = Gravity.CENTER
         titulo.setTypeface(null, android.graphics.Typeface.BOLD)
 
-        principal.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                65
-            )
-        )
+        principal.addView(titulo)
 
         val subtitulo = TextView(this)
         subtitulo.text = "Sistema de Gestión"
@@ -38,36 +32,30 @@ class MainActivity : AppCompatActivity() {
         subtitulo.gravity = Gravity.CENTER
         subtitulo.setTextColor(Color.DKGRAY)
 
-        principal.addView(
-            subtitulo,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                50
-            )
-        )
+        principal.addView(subtitulo)
 
         agregarBoton(principal, "👤  CLIENTES") {
             startActivity(Intent(this, ClientesActivity::class.java))
         }
 
         agregarBoton(principal, "🔧  TRABAJOS") {
-            Toast.makeText(this, "Módulo Trabajos", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, TrabajosActivity::class.java))
         }
 
         agregarBoton(principal, "📅  AGENDA") {
-            Toast.makeText(this, "Módulo Agenda", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, AgendaActivity::class.java))
         }
 
         agregarBoton(principal, "📦  DEPÓSITO Y STOCK") {
-            Toast.makeText(this, "Módulo Depósito y Stock", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, StockActivity::class.java))
         }
 
         agregarBoton(principal, "💰  PRESUPUESTOS") {
-            Toast.makeText(this, "Módulo Presupuestos", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, PresupuestosActivity::class.java))
         }
 
         agregarBoton(principal, "📊  RESUMEN") {
-            Toast.makeText(this, "Módulo Resumen", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ResumenActivity::class.java))
         }
 
         val espacio = Space(this)
@@ -100,6 +88,7 @@ class MainActivity : AppCompatActivity() {
         val boton = Button(this)
         boton.text = texto
         boton.textSize = 16f
+
         boton.setOnClickListener {
             accion()
         }
